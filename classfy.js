@@ -66,22 +66,22 @@ const pinkButton = document.querySelector(".pink");
 const ul = document.querySelector(".l_col");
 
 pantsButton.addEventListener("click", () => {
-  Classify("p");
+  classify("p");
 });
 tshirsButton.addEventListener("click", () => {
-  Classify("t");
+  classify("t");
 });
 skirtsButton.addEventListener("click", () => {
-  Classify("s");
+  classify("s");
 });
 blueButton.addEventListener("click", () => {
-  Classify("blue");
+  classify("blue");
 });
 yellowButton.addEventListener("click", () => {
-  Classify("yellow");
+  classify("yellow");
 });
 pinkButton.addEventListener("click", () => {
-  Classify("pink");
+  classify("pink");
 });
 
 const removeAll = () => {
@@ -91,7 +91,19 @@ const removeAll = () => {
   });
 };
 
-const Classify = (param) => {
+const addClothes = (clothes) => {
+  clothes.forEach((cloth) => {
+    const li = document.createElement("li");
+    const div = document.createElement("div");
+    li.setAttribute("class", "l_row");
+    div.setAttribute("class", "item");
+    div.innerHTML = `<img src="img/${cloth.color}_${cloth.type}.png"> <p>${cloth.color}, ${cloth.gender} ${cloth.size} size</p>`;
+    li.appendChild(div);
+    ul.appendChild(li);
+  });
+};
+
+const classify = (param) => {
   removeAll();
   let result;
   switch (param) {
@@ -120,18 +132,6 @@ const Classify = (param) => {
       addClothes(result);
   }
 };
-
-function addClothes(clothes) {
-  clothes.forEach((cloth) => {
-    const li = document.createElement("li");
-    const div = document.createElement("div");
-    li.setAttribute("class", "l_row");
-    div.setAttribute("class", "item");
-    div.innerHTML = `<img src="img/${cloth.color}_${cloth.type}.png"> <p>${cloth.color}, ${cloth.gender} ${cloth.size} size</p>`;
-    li.appendChild(div);
-    ul.appendChild(li);
-  });
-}
 
 function init() {
   addClothes(clothes);
